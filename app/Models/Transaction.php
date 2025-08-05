@@ -6,19 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Product extends Model
+class Transaction extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'price',
-        'quantity',
-    ];
-
-    public function transactions()
+    public function user()
     {
-        return $this->belongsToMany(Transaction::class, 'product_transaction')
+        return $this->belongsTo(User::class);
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_transaction')
                     ->withPivot('quantity', 'price_at_purchase')
                     ->withTimestamps();
     }
