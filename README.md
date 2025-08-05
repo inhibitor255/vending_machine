@@ -1,6 +1,6 @@
 # Vending Machine
 
-This is a Laravel application that simulates a vending machine. It is built with the TALL stack (Tailwind CSS, Alpine.js, Livewire, and Laravel).
+This is a Laravel application that simulates a vending machine. It is built with the Tailwind CSS, Blade, and Laravel).
 
 ## Features
 
@@ -12,11 +12,13 @@ This is a Laravel application that simulates a vending machine. It is built with
 * **User Settings:** Users can manage their profile and password.
 * **Paginated Product List:** The product list is paginated and includes sorting controls for product name, price, and quantity.
 * **Server-Side Validation:** Product input forms utilize server-side validation via `ProductRequest` to ensure data integrity. Fields like name, price, and quantity are validated for presence, format, and range. Validation errors are automatically available in Blade views for display.
+* **API Validation** Secure API validation with sanctum with access token.
+* **REST API** Standard API format for Products.
 
 ## Tech Stack
 
 * **Backend:** PHP 8.2, Laravel 12
-* **Frontend:** Livewire, Volt, Tailwind CSS, Alpine.js
+* **Frontend:** Blade
 * **Database:** MySQL
 
 ## Getting Started
