@@ -11,6 +11,7 @@ This is a Laravel application that simulates a vending machine. It is built with
 * **Transaction System:** The application has a system for handling transactions.
 * **User Settings:** Users can manage their profile and password.
 * **Paginated Product List:** The product list is paginated and includes sorting controls for product name, price, and quantity.
+* **Server-Side Validation:** Product input forms utilize server-side validation via `ProductRequest` to ensure data integrity. Fields like name, price, and quantity are validated for presence, format, and range. Validation errors are automatically available in Blade views for display.
 
 ## Tech Stack
 
