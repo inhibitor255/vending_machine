@@ -1,8 +1,18 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ $product->name }}
+        </h2>
+    </x-slot>
 
-@section('content')
-    <h1>{{ $product->name }}</h1>
-    <p>Price: {{ $product->price }}</p>
-    <p>Quantity: {{ $product->quantity }}</p>
-    <a href="{{ route('products.index') }}">Back to Products</a>
-@endsection
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <p><strong>{{ __('Price') }}:</strong> {{ $product->price }}</p>
+                    <p><strong>{{ __('Quantity') }}:</strong> {{ $product->quantity }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

@@ -12,10 +12,23 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return view('products.index', compact('products'));
+        $query = Product::query();
+
+        $sortBy = $request->input('sort_by', 'name');
+        $sortDirection = $request->input('sort_direction', 'asc');
+
+        $sortableColumns = ['name', 'price', 'quantity'];
+        if (!in_array($sortBy, $sortableColumns)) {
+            $sortBy = 'name';
+        }
+
+        $query->orderBy($sortBy, $sortDirection);
+
+        $products = $query->paginate(10);
+
+        return view('products.index', compact('products', 'sortBy', 'sortDirection'));
     }
 
     /**
@@ -73,18 +86,28 @@ class ProductController extends Controller
         return redirect()->route('products.index');
     }
 
+    public function purchaseView(string $id)
+    {
+        $product = Product::find($id);
+        return view('products.purchase', compact('product'));
+    }
+
     public function purchase(Request $request, string $id)
     {
         $product = Product::find($id);
+        $quantity = $request->input('quantity', 1);
 
-        DB::transaction(function () use ($product, $request) {
-            $product->decrement('quantity');
+        DB::transaction(function () use ($product, $request, $quantity) {
+            $product->decrement('quantity', $quantity);
 
-            Transaction::create([
-                'product_id' => $product->id,
+            $transaction = Transaction::create([
                 'user_id' => auth()->id(),
-                'quantity' => 1,
-                'total_price' => $product->price,
+                'total_amount' => $product->price * $quantity,
+            ]);
+
+            $transaction->products()->attach($product->id, [
+                'quantity' => $quantity,
+                'price_at_purchase' => $product->price,
             ]);
         });
 

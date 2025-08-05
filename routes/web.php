@@ -17,4 +17,5 @@ require __DIR__.'/auth.php';
 use App\Http\Controllers\ProductController;
 
 Route::resource('products', ProductController::class);
+Route::get('products/{product}/purchase', [ProductController::class, 'purchaseView'])->name('products.purchaseView');
 Route::post('products/{product}/purchase', [ProductController::class, 'purchase'])->name('products.purchase');
