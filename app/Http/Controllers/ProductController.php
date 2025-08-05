@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -68,6 +70,24 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
+        return redirect()->route('products.index');
+    }
+
+    public function purchase(Request $request, string $id)
+    {
+        $product = Product::find($id);
+
+        DB::transaction(function () use ($product, $request) {
+            $product->decrement('quantity');
+
+            Transaction::create([
+                'product_id' => $product->id,
+                'user_id' => auth()->id(),
+                'quantity' => 1,
+                'total_price' => $product->price,
+            ]);
+        });
+
         return redirect()->route('products.index');
     }
 }

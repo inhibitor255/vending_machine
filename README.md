@@ -7,6 +7,7 @@ This is a Laravel application that simulates a vending machine. It is built with
 *   **User Authentication:** Standard Laravel authentication with email verification, powered by Laravel Breeze.
 *   **Role-Based Access Control:** The application has a basic role-based access control system with `admin` and `user` roles.
 *   **Product Management:** Users can create, read, update, and delete products.
+*   **Product Purchase:** Users can purchase products, which decrements the product quantity and logs the transaction.
 *   **Transaction System:** The application has a system for handling transactions.
 *   **User Settings:** Users can manage their profile and password.
 
