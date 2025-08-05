@@ -9,7 +9,7 @@ use App\Http\Controllers\Api\V1\AuthController;
 Route::post('/v1/login', [AuthController::class, 'login']);
 
 // Group all protected routes under Sanctum's middleware
-Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
+Route::middleware('auth:sanctum')->prefix('v1')->name('api.')->group(function () {
 
     // This single line creates routes for:
     // GET /products, GET /products/{id}, POST /products,

@@ -36,6 +36,17 @@ new class extends Component
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')" wire:navigate>
                         {{ __('Products') }}
                     </x-nav-link>
+                    @auth
+                        @if (Auth::user()->isAdmin())
+                            <x-nav-link :href="route('transactions.index')" :active="request()->routeIs('transactions.index')" wire:navigate>
+                                {{ __('Admin Transactions') }}
+                            </x-nav-link>
+                        @else
+                            <x-nav-link :href="route('user.transactions.index')" :active="request()->routeIs('user.transactions.index')" wire:navigate>
+                                {{ __('My Transactions') }}
+                            </x-nav-link>
+                        @endif
+                    @endauth
                 </div>
             </div>
 
@@ -90,6 +101,17 @@ new class extends Component
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')" wire:navigate>
                 {{ __('Products') }}
             </x-responsive-nav-link>
+            @auth
+                @if (Auth::user()->isAdmin())
+                    <x-responsive-nav-link :href="route('transactions.index')" :active="request()->routeIs('transactions.index')" wire:navigate>
+                        {{ __('Admin Transactions') }}
+                    </x-responsive-nav-link>
+                @else
+                    <x-responsive-nav-link :href="route('user.transactions.index')" :active="request()->routeIs('user.transactions.index')" wire:navigate>
+                        {{ __('My Transactions') }}
+                    </x-responsive-nav-link>
+                @endif
+            @endauth
         </div>
 
         <!-- Responsive Settings Options -->
