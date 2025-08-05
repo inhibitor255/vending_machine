@@ -87,9 +87,8 @@ class ProductController extends Controller
         return redirect()->route('products.index');
     }
 
-    public function purchaseView(string $id)
+    public function purchaseView(Product $product)
     {
-        $product = Product::find($id);
         return view('products.purchase', compact('product'));
     }
 
