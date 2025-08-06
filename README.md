@@ -16,12 +16,14 @@ This is a Laravel application that simulates a vending machine. It is built with
 * **REST API** Standard API format for other frontend applications to interact with the
 vending machine system.
 * **Testing** Can Test Products API with `php artisan test tests/Feature/Api/V1/ProductControllerTest.php` and Test Products with `php artisan test tests/Feature/ProductControllerTest.php` or you can simply just type `php artisan test`.
+* **Deployment** Deployment using Docker for contaninerization on AWS server.
 
 ## Tech Stack
 
 * **Backend:** PHP 8.2, Laravel 12
 * **Frontend:** Blade
 * **Database:** MySQL
+* **Deployment** Docker, AWS
 
 ## Getting Started
 
